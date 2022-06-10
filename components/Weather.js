@@ -8,35 +8,35 @@ import { LinearGradient } from 'expo-linear-gradient';
 const weatherOptions = {
   Thunderstorm: {
     iconName: 'weather-lightning',
-    gradient: ['#83a4d4', '#b6fbff'],
+    gradient: ['#141E30', '#243B55'],
   },
   Drizzle: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-rainy',
+    gradient: ['#3a7bd5', '#3a6073'],
   },
   Rain: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-pouring',
+    gradient: ['#000046', '#3a6073'],
   },
   Snow: {
-    iconName: 'weather-snowy',
+    iconName: 'snowflake',
     gradient: ['#83a4d4', '#b6fbff'],
   },
   Mist: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-fog',
+    gradient: ['#606c88', '#3f4c6b'],
   },
   Smoke: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-windy',
+    gradient: ['#56ccf2', '#2f80ed'],
   },
   Haze: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-haze',
+    gradient: ['#3e5151', '#decba4'],
   },
   Dust: {
-    iconName: 'weather-snowy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    iconName: 'weather-windy-variant',
+    gradient: ['#b79891', '#94716b'],
   },
   Fog: {
     iconName: 'weather-snowy',
@@ -64,25 +64,27 @@ const weatherOptions = {
   },
   Clear: {
     iconName: 'weather-sunny',
-    gradient: ['#83a4d4', '#b6fbff'],
+    gradient: ['#56ccf2', '#2f80ed'],
   },
   Clouds: {
     iconName: 'weather-cloudy',
-    gradient: ['#83a4d4', '#b6fbff'],
+    gradient: ['#757f9a', '#d7dde8'],
   },
 };
 
-export default function Weather({ temp, condition }) {
+export default function Weather({ temp, condition, description, sity }) {
   return (
     // <View style={styles.container}>
     <LinearGradient colors={weatherOptions[condition].gradient} style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={styles.halfScren}>
+        <Text style={styles.sity}>{sity}</Text>
         <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={96} color="white" />
         <Text style={styles.temp}>{temp}°</Text>
       </View>
-      <View style={styles.halfScren}>
-        <Text>Описание</Text>
+      <View style={[styles.halfScren, styles.textContainer]}>
+        <Text style={styles.title}>{condition}</Text>
+        <Text style={styles.subtitle}>{description}</Text>
       </View>
     </LinearGradient>
     // </View>
@@ -114,17 +116,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
   halfScren: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sity: {
+    fontSize: 42,
+    color: 'white',
+    textAlign: 'center',
   },
   temp: {
     fontSize: 42,
     color: 'white',
-    // fontWeight: 300,
+    // fontWeight: '500',
+  },
+  title: {
+    color: 'white',
+    fontSize: 44,
+    fontWeight: '300',
+    marginBottom: 10,
+    // textAlign: 'left',
+    flexWrap: 'wrap',
+  },
+  subtitle: {
+    color: 'white',
+    fontWeight: '600',
+    fontSize: 24,
+    // textAlign: 'left',
+    flexWrap: 'wrap',
+  },
+  textContainer: {
+    paddingHorizontal: 30,
+    flex: 1,
+    justifyContent: 'center',
+    // alignItems: 'center',
+    // alignItems: 'flex-start',
+    // flexWrap: 'wrap',
   },
 });
